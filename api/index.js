@@ -16,6 +16,11 @@ app.get("/", (req, res) =>{
     });
 });
 
-app.post()
+app.post("/subcriber",(req, res) =>{
+    res.status(200).json({
+        message: "this ep needs to finish"
+    });
+});
 
 app.listen(`${process.env.port}`)
+module.exports = app;
