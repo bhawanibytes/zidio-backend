@@ -3,6 +3,9 @@ const app = express();
 const cors = require("cors")
 require('dotenv').config({ path: '../.env' });
 const mongoose = require("mongoose");
+const { subsRouter } = require("../routes/subs");
+const { contactRouter } = require("../routes/contact");
+app.use(express.json());
 
 const corsOptions = {
     origin: 'https://zidio-web.vercel.app',
@@ -17,17 +20,8 @@ app.get("/", (req, res) =>{
     });
 });
 
-app.post("/contact", (req, res) => {
-    res.status(200).json({
-        message: "We will contact you, Shorty!"
-    })
-})
-
-app.post("/subcriber",(req, res) =>{
-    res.status(200).json({
-        message: "You subcribed to newsletter, successfully!"
-    });
-});
+app.use("/api/v1/contact", contactRouter);
+app.use("/api/v1/subs", subsRouter);
 
 async function main() {
     try {

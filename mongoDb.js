@@ -1,8 +1,14 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
 
-const subsSchema = new Schema({
-    email: {type: String, unique: true}
+// Define a schema with an array of email addresses
+const subsSchema = new mongoose.Schema({
+    listName: { type: String, required: true },
+    subscribers: [ {
+            type: String,
+            required: true,
+            match: [/.+@.+\..+/, 'Please enter a valid email address'],
+        } ], // Array of email strings
 });
 
 const contactSchema = new Schema({
