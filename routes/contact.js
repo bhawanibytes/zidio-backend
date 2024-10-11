@@ -4,7 +4,7 @@ const { contactModel } = require("../mongoDb");
 const contactRouter = Router();
 
 contactRouter.post("/", async (req, res) => {
-    const { name, email, phoneNumber, subject, message }  = req;
+    const { name, email, phoneNumber, subject, message }  = req.body;
     try {
         await contactModel.create({
             name,
@@ -13,7 +13,7 @@ contactRouter.post("/", async (req, res) => {
             subject,
             message
         })
-        res.status(200).json({ message: "Successfully subscribed!" });
+        res.status(200).json({ message: "Received details!" });
     } catch (error) {
         res.status(500).json({ message: "Failed while storing in db." });
     }

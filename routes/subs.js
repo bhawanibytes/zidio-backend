@@ -4,7 +4,7 @@ const { subsModel } = require("../mongoDb");
 const subsRouter = Router();
 
 subsRouter.post("/", async (req, res) => {
-    const email = req.email;
+    const email = req.body.email;
     async function addSubscriber(email) {
         try {
             // Find the list (you might have multiple lists, so you can add filters if needed)
